@@ -65,13 +65,13 @@ internal class LocalizationManager : ILocalizationManager
                 foreach (XmlNode translate in key["Translates"]?.ChildNodes)
                 {
                     if (translate?.InnerText == null)
-                        Log.WriteWarning($"Null translate! Key={keyStr}");
+                        Log.Warning($"Null translate! Key={keyStr}");
                     values.Add(translate?.InnerText == null ? string.Empty : translate.InnerText);
                 }
 
                 if (_localization.ContainsKey(keyStr))
                 {
-                    Log.WriteWarning($"Duplicate localization key: {keyStr}. Translate skipped");
+                    Log.Warning($"Duplicate localization key: {keyStr}. Translate skipped");
                     continue;
                 }
                 _localization[keyStr] = values;
@@ -79,7 +79,7 @@ internal class LocalizationManager : ILocalizationManager
         }
         catch (Exception e)
         {
-            Log.WriteError($"Exception in load localization from file: {e.Message}");
+            Log.Error($"Exception in load localization from file: {e.Message}");
         }
     }
 

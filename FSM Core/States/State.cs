@@ -15,7 +15,7 @@ public abstract class State<TInput, TOutput> : BaseState
 #if DEVELOPMENT_BUILD
         
         stateCounter++;
-        Log.WriteInfo($"[{stateCounter}]Active state: {GetType().Name}");
+        Log.Info($"[{stateCounter}]Active state: {GetType().Name}");
         
 #endif
         

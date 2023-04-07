@@ -19,7 +19,7 @@ internal class UnityServicesManager
         }
         catch (Exception exception)
         {
-            Log.WriteError(exception.Message);
+            Log.Error(exception.Message);
         }
         return Task.CompletedTask;
     }

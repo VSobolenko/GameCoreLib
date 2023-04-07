@@ -23,7 +23,7 @@ internal class VerticalTransition : IWindowTransition
 
 #if DEVELOPMENT_BUILD
         if (transform == null || canvasGroup == null)
-            Log.WriteError("Null transition components");
+            Log.Error("Null transition components");
 #endif
         
         canvasGroup.blocksRaycasts = false;

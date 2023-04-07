@@ -28,7 +28,7 @@ internal class IAPShopManager : IShopManager, IStoreListener
         
         if (_sourceProducts == null)
         {
-            Log.WriteError("Null source products");
+            Log.Error("Null source products");
             return await Task.FromResult(false);
         }
 
@@ -62,13 +62,13 @@ internal class IAPShopManager : IShopManager, IStoreListener
     public void OnInitializeFailed(InitializationFailureReason error)
     {
         if (_initializationCompletionSource?.TrySetResult(false) == false)
-            Log.WriteError($"Initialize Failed: {error.ToString()}");
+            Log.Error($"Initialize Failed: {error.ToString()}");
     }
 
     public void OnInitializeFailed(InitializationFailureReason error, string? message)
     {
         if (_initializationCompletionSource?.TrySetResult(false) == false)
-            Log.WriteError($"Initialize Failed: {error.ToString()}; Message: {message}");
+            Log.Error($"Initialize Failed: {error.ToString()}; Message: {message}");
     }
 
     public Task<PurchaseResult> PurchaseProduct(string productId)
@@ -90,7 +90,7 @@ internal class IAPShopManager : IShopManager, IStoreListener
         }
         catch (Exception e)
         {
-            Log.WriteError(e.Message);
+            Log.Error(e.Message);
             _purchaseCompletionSource.SetResult(PurchaseResult.Error);
         }
 

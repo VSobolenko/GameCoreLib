@@ -19,7 +19,7 @@ public class ShopInstaller : Installer<ShopInstaller>
         var so = Resources.Load<ProductsSettingsCollections>(ResourcesSettingsPath);
         if (so == null)
         {
-            Log.WriteError($"Can't load localization so settings. Path to so: {ResourcesSettingsPath}");
+            Log.Error($"Can't load localization so settings. Path to so: {ResourcesSettingsPath}");
 
             return default;
         }

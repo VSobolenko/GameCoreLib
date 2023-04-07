@@ -82,7 +82,7 @@ internal class FileRepositoryManager<T> : BaseRepositoryManager<T>, IRepository<
     {
         if (IsFileExists(entity) == false)
         {
-            Log.WriteWarning($"Cannot find file with id={entity.Id}. Update skipped");
+            Log.Warning($"Cannot find file with id={entity.Id}. Update skipped");
 
             return;
         }
@@ -95,7 +95,7 @@ internal class FileRepositoryManager<T> : BaseRepositoryManager<T>, IRepository<
     {
         if (IsFileExists(entity) == false)
         {
-            Log.WriteWarning($"Cannot find file with id={entity.Id}. Delete skipped");
+            Log.Warning($"Cannot find file with id={entity.Id}. Delete skipped");
 
             return;
         }
@@ -108,7 +108,7 @@ internal class FileRepositoryManager<T> : BaseRepositoryManager<T>, IRepository<
     {
         if (IsFileExists(id))
         {
-            Log.WriteError($"File {typeof(T).ToString() + id} with id={id} already exist. File creation skipped!");
+            Log.Error($"File {typeof(T).ToString() + id} with id={id} already exist. File creation skipped!");
             return;
         }
 
@@ -129,7 +129,7 @@ internal class FileRepositoryManager<T> : BaseRepositoryManager<T>, IRepository<
         var fileName = Path.GetFileNameWithoutExtension(file?.Name);
         if (string.IsNullOrEmpty(fileName))
         {
-            Log.WriteError("Cannot find free file ID");
+            Log.Error("Cannot find free file ID");
 
             return int.MaxValue;
         }
@@ -146,12 +146,12 @@ internal class FileRepositoryManager<T> : BaseRepositoryManager<T>, IRepository<
     private void PrepareDirectory(bool deleteExistingFiles)
     {
         if ((_path[^1] == '\\' || _path[^1] == '/') == false)
-            Log.WriteWarning($"Possibly specified path. Path: {_path}");
+            Log.Warning($"Possibly specified path. Path: {_path}");
 
         if (Directory.Exists(_path) == false)
         {
             Directory.CreateDirectory(_path);
-            Log.WriteInfo($"New repository path created. Path: {_path}");
+            Log.Info($"New repository path created. Path: {_path}");
 
             return;
         }
@@ -168,7 +168,7 @@ internal class FileRepositoryManager<T> : BaseRepositoryManager<T>, IRepository<
                 if (file.Name.Contains(typeof(T).ToString()))
                     continue;
 #if UNITY_EDITOR
-                Log.WriteWarning($"The file repository contains the file {file.Name}. Folder must be empty. " +
+                Log.Warning($"The file repository contains the file {file.Name}. Folder must be empty. " +
                                  $"This file will be deleted. File path: {_path}");
 #else
                 Log.WriteWarning($"Delete file {file.Name}. Folder must be empty. Path: {_path}");
@@ -177,7 +177,7 @@ internal class FileRepositoryManager<T> : BaseRepositoryManager<T>, IRepository<
             }
             catch (Exception e)
             {
-                Log.WriteError($"Cannot delete file in directory: {_path}. Exception: {e.Message}");
+                Log.Error($"Cannot delete file in directory: {_path}. Exception: {e.Message}");
                 
                 throw new ArgumentException($"Directory cannot contains file: {file.Name} in {_path}");
             }

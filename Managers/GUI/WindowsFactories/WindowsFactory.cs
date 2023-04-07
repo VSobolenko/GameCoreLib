@@ -68,7 +68,7 @@ internal class WindowsFactory : IWindowFactory
         
         if (_windowMediatorMap.TryGetValue(mediatorType, out var windowType) == false)
         {
-            Log.WriteError($"For {mediatorType} Window type not found");
+            Log.Error($"For {mediatorType} Window type not found");
 
             return false;
         }
@@ -80,7 +80,7 @@ internal class WindowsFactory : IWindowFactory
 
         if (prefab.GetComponent(windowType) == null)
         {
-            Log.WriteError($"Can't find \"{windowType}\" component in {prefab.gameObject}.");
+            Log.Error($"Can't find \"{windowType}\" component in {prefab.gameObject}.");
             return false;
         }
         

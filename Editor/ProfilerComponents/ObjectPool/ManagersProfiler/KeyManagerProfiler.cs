@@ -117,7 +117,7 @@ internal class KeyManagerProfiler : IPoolProfiler
     {
         if (_pool == null)
         {
-            Log.WriteError("Null pool");
+            Log.Error("Null pool");
             return;
         }
 

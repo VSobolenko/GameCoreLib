@@ -34,7 +34,7 @@ internal class InGameConsoleDebug : MonoBehaviour
         var consolePrefab = Resources.Load<GameObject>("IngameDebugConsole");
         if (consolePrefab == null) 
         {
-            Log.WriteWarning("IngameDebugConsolePrefab not found");
+            Log.Warning("IngameDebugConsolePrefab not found");
             return;
         }
 

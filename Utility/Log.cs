@@ -2,13 +2,13 @@
 {
 public static class Log
 {
-    private static string Info => "[info]";
-    private static string Warning => "[warning]";
-    private static string Error => "[error]";
-    private static string ExceptionType => "[error]";
-    private static string Debug => "[debug]";
-    private static string Critical => "[critical]";
-    private static string Analytics => "[analytics]";
+    private static string InfoType => "[info]";
+    private static string WarningType => "[warning]";
+    private static string ErrorType => "[error]";
+    private static string ExceptionType => "[exception]";
+    private static string DebugType => "[debug]";
+    private static string CriticalType => "[critical]";
+    private static string AnalyticsType => "[analytics]";
 
     [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
     public static void Write(string text)
@@ -19,25 +19,25 @@ public static class Log
     }
 
     [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-    public static void WriteInfo(string text)
+    public static void Info(string text)
     {
 #if ENABLE_LOG
-        UnityEngine.Debug.Log($"{LogType(Info, Green)} " + text);
+        UnityEngine.Debug.Log($"{LogType(InfoType, Green)} " + text);
 #endif
     }
     [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-    public static void WriteWarning(string text)
+    public static void Warning(string text)
     {
 #if ENABLE_LOG
-        UnityEngine.Debug.Log($"{LogType(Warning, Orange)} " + text);
+        UnityEngine.Debug.Log($"{LogType(WarningType, Orange)} " + text);
 #endif
     }
 
     [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-    public static void WriteError(string text)
+    public static void Error(string text)
     {
 #if ENABLE_LOG
-        UnityEngine.Debug.Log($"{LogType(Error, Red)} " + text);
+        UnityEngine.Debug.Log($"{LogType(ErrorType, Red)} " + text);
 #endif
     }
 
@@ -53,7 +53,7 @@ public static class Log
     public static void InternalError()
     {
 #if ENABLE_LOG
-        UnityEngine.Debug.Log($"{LogType(Critical, Blue)} " + "Internal error");
+        UnityEngine.Debug.Log($"{LogType(CriticalType, Blue)} " + "Internal error");
 #endif
     }
 

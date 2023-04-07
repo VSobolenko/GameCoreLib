@@ -21,7 +21,7 @@ public abstract class DirectedTransition<TSourceInput, TTransitionData, TTargetO
     public sealed override void Transit()
     {
         if (stateMachine?.ActiveState == _targetState)
-            Log.WriteWarning("Identical transition");
+            Log.Warning("Identical transition");
 
         try
         {

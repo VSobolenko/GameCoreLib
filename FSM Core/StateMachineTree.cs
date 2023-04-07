@@ -74,7 +74,7 @@ public class StateMachineTree
             var transitionData = _transitions.FirstOrDefault(x => x.transition == baseTransition);
             if (transitionData.Equals(default) || transitionData.transition == null)
             {
-                Log.WriteWarning($"Can't remove transition from tree: Transition={baseTransition}");
+                Log.Warning($"Can't remove transition from tree: Transition={baseTransition}");
                 return;
             }
 

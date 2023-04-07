@@ -23,7 +23,7 @@ internal class AddressablesManager : System.IDisposable, IAddressablesManager
     {
         if (string.IsNullOrEmpty(key))
         {
-            Log.WriteWarning("Unable to load null or empty key");
+            Log.Warning("Unable to load null or empty key");
 
             return null;
         }
@@ -37,7 +37,7 @@ internal class AddressablesManager : System.IDisposable, IAddressablesManager
 
         if (IsKeyExist(key) == false)
         {
-            Log.WriteWarning($"Asset key not found: \"{key}\"");
+            Log.Warning($"Asset key not found: \"{key}\"");
 
             return null;
         }
@@ -47,7 +47,7 @@ internal class AddressablesManager : System.IDisposable, IAddressablesManager
 
         if (IsHandleCompleteSuccess(ref handle) == false)
         {
-            Log.WriteError($"Asset loading error: Status={handle.Status}; IsDone={handle.IsDone}");
+            Log.Error($"Asset loading error: Status={handle.Status}; IsDone={handle.IsDone}");
 
             return default;
         }
@@ -65,7 +65,7 @@ internal class AddressablesManager : System.IDisposable, IAddressablesManager
 #endif
         if (string.IsNullOrEmpty(key))
         {
-            Log.WriteWarning("Unable to load null or empty key");
+            Log.Warning("Unable to load null or empty key");
 
             return null;
         }
@@ -75,7 +75,7 @@ internal class AddressablesManager : System.IDisposable, IAddressablesManager
 
         if (await IsKeyExistAsync(key) == false)
         {
-            Log.WriteWarning($"Asset key not found: \"{key}\"");
+            Log.Warning($"Asset key not found: \"{key}\"");
 
             return null;
         }
@@ -85,7 +85,7 @@ internal class AddressablesManager : System.IDisposable, IAddressablesManager
 
         if (IsHandleCompleteSuccess(ref handle) == false)
         {
-            Log.WriteError($"Asset loading error: Status={handle.Status}; IsDone={handle.IsDone}");
+            Log.Error($"Asset loading error: Status={handle.Status}; IsDone={handle.IsDone}");
 
             return default;
         }
@@ -110,14 +110,14 @@ internal class AddressablesManager : System.IDisposable, IAddressablesManager
     {
         if (string.IsNullOrEmpty(key))
         {
-            Log.WriteWarning("Unable to load empty key");
+            Log.Warning("Unable to load empty key");
 
             return default;
         }
 
         if (await IsKeyExistAsync(key) == false)
         {
-            Log.WriteWarning($"Asset key not found: \"{key}\"");
+            Log.Warning($"Asset key not found: \"{key}\"");
 
             return default;
         }
@@ -135,7 +135,7 @@ internal class AddressablesManager : System.IDisposable, IAddressablesManager
             if (handler.IsValid())
                 Addressables.Release(handler);
             else
-                Log.WriteError($"handler in not valid: {key}");
+                Log.Error($"handler in not valid: {key}");
         }
 
         _loadedHandlers.Clear();
@@ -153,7 +153,7 @@ internal class AddressablesManager : System.IDisposable, IAddressablesManager
 
         if (IsHandleCompleteSuccess(ref handle) == false)
         {
-            Log.WriteError($"Asset loading error: Status={handle.Status}; IsDone={handle.IsDone}");
+            Log.Error($"Asset loading error: Status={handle.Status}; IsDone={handle.IsDone}");
 
             return default;
         }
@@ -168,7 +168,7 @@ internal class AddressablesManager : System.IDisposable, IAddressablesManager
 
         if (IsHandleCompleteSuccess(ref handle) == false)
         {
-            Log.WriteError($"Asset loading error: Status={handle.Status}; IsDone={handle.IsDone}");
+            Log.Error($"Asset loading error: Status={handle.Status}; IsDone={handle.IsDone}");
 
             return default;
         }

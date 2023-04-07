@@ -20,7 +20,7 @@ public class ProjectGuiInstaller: Installer<ProjectGuiInstaller>
         var so = Resources.Load<WindowSettingsSo>(ResourcesWindowSettingsPath);
         if (so == null)
         {
-            Log.WriteError($"Can't load input so settings. Path to so: {ResourcesWindowSettingsPath}");
+            Log.Error($"Can't load input so settings. Path to so: {ResourcesWindowSettingsPath}");
 
             return default;
         }

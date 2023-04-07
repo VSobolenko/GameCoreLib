@@ -43,7 +43,7 @@ internal class LocalizableTMP : LocalizableBehaviour
     {
         if (manager == null || targetText == null)
         {
-            Log.WriteError($"Translation is skipped for object {gameObject.name}");
+            Log.Error($"Translation is skipped for object {gameObject.name}");
             return;
         }
 
@@ -77,7 +77,7 @@ internal class LocalizableTMP : LocalizableBehaviour
         var settings = Resources.Load<LocalizationSettings>(settingsPath);
         if (settings == null)
         {
-            Log.WriteError($"Can't find settings for manager on [{settingsPath}]");
+            Log.Error($"Can't find settings for manager on [{settingsPath}]");
 
             return;
         }

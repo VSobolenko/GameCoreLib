@@ -10,7 +10,7 @@ internal class RaycastBypassEditorUI : MonoBehaviour
 {
     private void OnEnable()
     {
-        Log.WriteWarning($"Editor only {GetType().Name} component. Removed this from {name} gameObject");
+        Log.Warning($"Editor only {GetType().Name} component. Removed this from {name} gameObject");
         Destroy(this);
     }
 }

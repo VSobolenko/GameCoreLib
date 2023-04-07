@@ -42,7 +42,7 @@ public class ButtonConfiguration<T> where T : struct, Enum
 
     public void SimulateClick()
     {
-        Log.WriteInfo($"Invoke editor simulation action: {action}");
+        Log.Info($"Invoke editor simulation action: {action}");
         ButtonClick();
     }
     

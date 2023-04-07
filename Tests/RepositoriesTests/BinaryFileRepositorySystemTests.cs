@@ -41,7 +41,7 @@ public class BinaryFileRepositorySystemTests
             Directory.CreateDirectory(_testFolderPath);
         else
         {
-            Log.WriteWarning("The folder for temporary files already exists. An empty folder is required!");
+            Log.Warning("The folder for temporary files already exists. An empty folder is required!");
             _deleteTestFolder = false;
         }
         

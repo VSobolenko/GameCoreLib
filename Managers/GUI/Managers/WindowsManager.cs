@@ -25,7 +25,7 @@ internal class WindowsManager : IDisposable, IWindowsManager, IWindowsManagerAsy
         _windowTransition = windowTransition;
 
         if (_windowFactory.TryCreateWindowsRoot(rootUi, out _root) == false) 
-            Log.WriteWarning($"In {GetType()} empty root");
+            Log.Warning($"In {GetType()} empty root");
     }
     
     public void Dispose()
@@ -38,7 +38,7 @@ internal class WindowsManager : IDisposable, IWindowsManager, IWindowsManagerAsy
             }
             catch (Exception e)
             {
-                Log.WriteError($"Error inside close: {e.Message}");
+                Log.Exception($"Error inside close: {e.Message}");
             }
         }
         _windows.Clear();
@@ -245,7 +245,7 @@ internal class WindowsManager : IDisposable, IWindowsManager, IWindowsManagerAsy
         }
         catch (Exception e)
         {
-            Log.WriteError(e.Message);
+            Log.Exception(e.Message);
         }
 #endif
         var windowData = new WindowData
@@ -289,7 +289,7 @@ internal class WindowsManager : IDisposable, IWindowsManager, IWindowsManagerAsy
         }
         catch (Exception e)
         {
-           Log.WriteError(e.Message);
+           Log.Exception(e.Message);
         }
         try
         { 
@@ -302,7 +302,7 @@ internal class WindowsManager : IDisposable, IWindowsManager, IWindowsManagerAsy
         }
         catch (Exception e)
         {
-           Log.WriteError(e.Message);
+           Log.Exception(e.Message);
         }
 #endif
     }

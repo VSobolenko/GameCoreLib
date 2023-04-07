@@ -21,7 +21,7 @@ public class InputInstaller : Installer<InputInstaller>
         var so = Resources.Load<InputSettingsSo>(ResourcesSettingsPath);
         if (so == null)
         {
-            Log.WriteError($"Can't load input so settings. Path to so: {ResourcesSettingsPath}");
+            Log.Error($"Can't load input so settings. Path to so: {ResourcesSettingsPath}");
 
             return default;
         }

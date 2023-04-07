@@ -30,7 +30,7 @@ public class RaycastBypassEditorTools : Editor
         var raycastComponents = assignedGameObject.GetComponentsInChildren<T>(true);
         if (raycastComponents == null)
         {
-            Log.WriteInfo($"Objects for type {typeof(T)} not found");
+            Log.Info($"Objects for type {typeof(T)} not found");
             return;
         }
 
@@ -42,7 +42,7 @@ public class RaycastBypassEditorTools : Editor
             component.raycastTarget = false;
         }
         
-        Log.WriteInfo($"Disable raycast: CountObjects={raycastComponents.Length}; CountDisabled={countDisable}");
+        Log.Info($"Disable raycast: CountObjects={raycastComponents.Length}; CountDisabled={countDisable}");
         EditorUtility.SetDirty(this);
     }
 }

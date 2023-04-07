@@ -41,7 +41,7 @@ internal class ObjectPoolSeparateKeyManager : IObjectPoolManager
     {
         if (prefab == null)
         {
-            Log.WriteWarning("Can't prepare null prefab");
+            Log.Warning("Can't prepare null prefab");
             return;
         }
         
@@ -53,7 +53,7 @@ internal class ObjectPoolSeparateKeyManager : IObjectPoolManager
     {
         if (prefab == null)
         {
-            Log.WriteWarning("Can't prepare null prefab");
+            Log.Warning("Can't prepare null prefab");
             return;
         }
         
@@ -82,7 +82,7 @@ internal class ObjectPoolSeparateKeyManager : IObjectPoolManager
     public void Release<T>(T prefab) where T : Object, IPoolable
     {
         if (prefab != null && _keyPool.ContainsKey(prefab.Key) == false)
-            Log.WriteError("Return unknown prefab to pool. Pool capacity increase");
+            Log.Error("Return unknown prefab to pool. Pool capacity increase");
         
         AddElementsToPool(prefab, true);
     }
@@ -92,7 +92,7 @@ internal class ObjectPoolSeparateKeyManager : IObjectPoolManager
     {
         if (prefab == null)
         {
-            Log.WriteWarning("Can't get null prefab");
+            Log.Warning("Can't get null prefab");
             return null;
         }
         
@@ -112,7 +112,7 @@ internal class ObjectPoolSeparateKeyManager : IObjectPoolManager
     {
         if (prefab == null)
         {
-            Log.WriteWarning("Can't add null prefab to pool");
+            Log.Warning("Can't add null prefab to pool");
             return;
         }
 
@@ -120,7 +120,7 @@ internal class ObjectPoolSeparateKeyManager : IObjectPoolManager
         {
             if (_keyPool.Keys.Count > _defaultCapacity)
             {
-                Log.WriteWarning("Pool capacity exceeded. Use an increased size of the original container");
+                Log.Warning("Pool capacity exceeded. Use an increased size of the original container");
                 _defaultCapacity = _keyPool.Count;
             }
 

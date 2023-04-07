@@ -48,7 +48,7 @@ public class CameraOrthographicScale : MonoBehaviour
     {
         if (cameraComponent.orthographic == false)
         {
-            Log.WriteWarning("Can't update scale in non orthographic camera");
+            Log.Warning("Can't update scale in non orthographic camera");
             return;
         }
         

@@ -18,7 +18,7 @@ public class Source : BasePooledObject
     public void StopSource(Action completeAction = null)
     {
         if (StopActiveFaded())
-            Log.WriteWarning($"A new fading process is started on the active object; Name={name};ActiveSound={AudioSource.clip}");
+            Log.Warning($"A new fading process is started on the active object; Name={name};ActiveSound={AudioSource.clip}");
         AudioSource.Stop();
         completeAction?.Invoke();
     }
@@ -26,7 +26,7 @@ public class Source : BasePooledObject
     public void FadeSource(float duration, float targetVolume = 1, Action completeAction = null)
     {
         if (StopActiveFaded())
-            Log.WriteWarning($"A new fading process is started on the active object; Name={name};ActiveSound={AudioSource.clip}");
+            Log.Warning($"A new fading process is started on the active object; Name={name};ActiveSound={AudioSource.clip}");
 
         _coroutine = StartCoroutine(FadeSound(duration, targetVolume, () =>
         {
