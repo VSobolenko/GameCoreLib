@@ -96,9 +96,9 @@ internal class AddressablesManager : System.IDisposable, IAddressablesManager
 #if RELEASE_BUILD
             
         }
-        catch (Exception e)
+        catch (System.Exception e)
         {
-            Console.WriteLine(e);
+            Log.Exception(e.Message);
 
             return default;
         }
