@@ -171,7 +171,7 @@ internal class FileRepositoryManager<T> : BaseRepositoryManager<T>, IRepository<
                 Log.Warning($"The file repository contains the file {file.Name}. Folder must be empty. " +
                                  $"This file will be deleted. File path: {_path}");
 #else
-                Log.WriteWarning($"Delete file {file.Name}. Folder must be empty. Path: {_path}");
+                Log.Warning($"Delete file {file.Name}. Folder must be empty. Path: {_path}");
                 file.Delete();
 #endif
             }
