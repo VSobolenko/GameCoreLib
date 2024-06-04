@@ -1,6 +1,6 @@
 //SETUP
-git submodule add https://github.com/chaconinc/DbConnector - add submodule to folder root
-git submodule add https://github.com/chaconinc/DbConnector Assets/GameCor - add submodule to folder Assets (./GameCor/.git)
+git submodule add https://github.com/VSobolenko/GameCoreLib - add submodule to folder root
+git submodule add https://github.com/VSobolenko/GameCoreLib Assets/Plugins/GameCoreLib - add submodule to folder Assets (./GameCor/.git)
 
 .. git clone https://github.com/VSobolenko...
 git submodule init - run this command after "git clone" to initialize the submodule 
