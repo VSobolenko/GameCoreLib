@@ -3,19 +3,23 @@
 namespace Game.GUI.Windows
 {
 /// <summary>
-/// Base class for windows
+/// Base class for window mediators
 /// Method execution order:
-///   SetActive()
-///   OnInitialize()
-///   OnShow()
-///   InitAction.Invoke()
-///   ...
-///     SetActive()
-///     OnShow() / OnHide()
-///   ...
-///   OnHide()
-///   OnDestroy()
-///   Destroy()
+/// +--------------------------------+
+/// | SetActive()
+/// |
+/// | OnInitialize()
+/// |  OnFocus()
+/// |  InitAction.Invoke()
+/// |  ...
+/// |    SetActive()
+/// |    OnFocus() / OnUnfocused()
+/// |  ...
+/// |  OnUnfocused()
+/// |  OnDestroy()
+/// |
+/// |  Destroy()
+/// +--------------------------------+
 /// </summary>
 /// <typeparam name="TWindow"></typeparam>
 public abstract class BaseMediator<TWindow> : IMediator where TWindow : WindowUI
@@ -26,23 +30,14 @@ public abstract class BaseMediator<TWindow> : IMediator where TWindow : WindowUI
     {
         this.window = window;
     }
-    
+
     public virtual void OnInitialize() { }
-
-    public virtual void OnShow() { }
-
-    public virtual void OnHide() { }
-
+    public virtual void OnFocus() { }
+    public virtual void OnUnfocused() { }
     public virtual void OnDestroy() { }
 
     public void SetActive(bool value) => window.gameObject.SetActive(value);
-
     public bool IsActive() => window.gameObject.activeInHierarchy;
-
-    public void Destroy()
-    {
-        if (window != null && window.gameObject != null)
-            GameObject.Destroy(window.gameObject);
-    }
+    public void Destroy() => Object.Destroy(window.gameObject);
 }
 }

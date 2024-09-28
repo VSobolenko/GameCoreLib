@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
-using UnityEngine;
+using Game.GUI.Windows.Managers;
 
 namespace Game.GUI.Windows.Transitions
 {
 public interface IWindowTransition
 {
-    Task Open(RectTransform transform, CanvasGroup canvasGroup);
-    Task Close(RectTransform transform, CanvasGroup canvasGroup);
+    Task Open(WindowProperties windowProperties);
+    Task Close(WindowProperties windowProperties);
 }
 }

@@ -1,10 +1,10 @@
 ﻿namespace Game.GUI.Windows
 {
-public interface IWindow
+public interface IWindowListener
 {
     void OnInitialize();
-    void OnShow();
-    void OnHide();
+    void OnFocus();
+    void OnUnfocused();
     void OnDestroy();
 }
 }

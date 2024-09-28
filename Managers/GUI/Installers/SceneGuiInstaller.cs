@@ -1,4 +1,5 @@
-﻿using Game.GUI.Windows.Factories;
+﻿using Game.GUI.Windows;
+using Game.GUI.Windows.Factories;
 using Game.GUI.Windows.Factories.Managers;
 using Game.GUI.Windows.Managers;
 using UnityEngine;
@@ -17,9 +18,11 @@ public class SceneGuiInstaller : Installer<Transform, SceneGuiInstaller>
 
     public override void InstallBindings()
     {
-        Container.BindInterfacesTo<WindowsManager>().AsSingle();
+        //Использовать AsTransient - для каждого директора каждый юай, остальным нельзя пользоваться
+        Container.BindInterfacesTo<WindowsManagerAsync>().AsSingle();
+        //Container.Bind<IWindowsManagerAsync>().To<WindowsManagerAsync>().AsSingle();
         Container.Bind<IWindowFactory>().To<WindowsFactory>().AsSingle();
-        Container.Bind<Transform>().FromInstance(_uiRoot).WhenInjectedInto<WindowsManager>();
+        Container.Bind<Transform>().FromInstance(_uiRoot).WhenInjectedInto<WindowsManagerAsync>();
     }
 }
 }

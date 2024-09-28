@@ -9,7 +9,7 @@ public interface IShopManager
 
     HashSet<GameProduct> Products { get; }
     
-    Task<PurchaseResult> PurchaseProduct(string productId);
+    Task<PurchaseResponseResult> PurchaseProduct(string productId);
 }
 
 public enum PurchaseResult : byte

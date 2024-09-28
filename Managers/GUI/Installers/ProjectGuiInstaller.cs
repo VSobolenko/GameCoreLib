@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Game.Installers.GUI
 {
-public class ProjectGuiInstaller: Installer<ProjectGuiInstaller>
+public class ProjectGuiInstaller : Installer<ProjectGuiInstaller>
 {
     private const string ResourcesWindowSettingsPath = "WindowSettings";
     

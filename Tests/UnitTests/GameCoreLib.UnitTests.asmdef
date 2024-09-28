@@ -1,5 +1,5 @@
 {
-    "name": "GameCoreLib.Tests",
+    "name": "GameCoreLib.UnitTests",
     "rootNamespace": "GameTests",
     "references": [
         "UnityEditor.TestRunner",
@@ -11,13 +11,16 @@
         "UniTask",
         "BoundfoxStudios.FluentAssertions"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
     "precompiledReferences": [
         "nunit.framework.dll",
-        "Newtonsoft.Json.dll"
+        "Newtonsoft.Json.dll",
+        "Moq.dll"
     ],
     "autoReferenced": true,
     "defineConstraints": [

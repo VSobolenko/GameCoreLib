@@ -35,9 +35,6 @@ internal class ApplovinAdManager : IAdsManager
     {
         MaxSdkCallbacks.OnSdkInitializedEvent += sdkConfiguration =>
         {
-            // AppLovin SDK is initialized, configure and start loading ads.
-            Log.Write("MAX SDK Initialized");
-
             InitializeInterstitialAds();
             InitializeRewardedAds();
         };
@@ -90,9 +87,6 @@ internal class ApplovinAdManager : IAdsManager
 
     private void OnInterstitialLoadedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
     {
-        // Interstitial ad is ready to be shown. MaxSdk.IsInterstitialReady(interstitialAdUnitId) will now return 'true'
-        Log.Write("Interstitial loaded");
-        
         // Reset retry attempt
         _interstitialRetryAttempt = 0;
     }
@@ -158,7 +152,6 @@ internal class ApplovinAdManager : IAdsManager
 
     private void LoadRewardedAd()
     {
-        Log.Write("Loading rewarded ad");
         MaxSdk.LoadRewardedAd(_adDetails.rewardedAdUnitId);
     }
 
@@ -183,9 +176,6 @@ internal class ApplovinAdManager : IAdsManager
 
     private void OnRewardedAdLoadedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
     {
-        // Rewarded ad is ready to be shown. MaxSdk.IsRewardedAdReady(rewardedAdUnitId) will now return 'true'
-        Log.Write("Rewarded ad loaded");
-
         // Reset retry attempt
         _rewardedRetryAttempt = 0;
     }

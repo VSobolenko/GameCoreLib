@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.PreferencesSaveType
 {
-internal class EnumSavableValue<T> : BaseSavableValue<T> where T: Enum
+internal class EnumSavableValue<T> : BaseSavableValue<T> where T: struct, Enum
 {
     public EnumSavableValue(string playerPrefsPath, T defaultValue = default) : 
         base(playerPrefsPath, defaultValue)

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.GUI.Windows
 {
-internal class BaseReactiveMediator<TWindow, TReactive> : IMediator 
+internal abstract class BaseReactiveMediator<TWindow, TReactive> : IMediator 
     where TWindow : WindowUI 
     where TReactive : struct, Enum
 {
@@ -22,9 +22,9 @@ internal class BaseReactiveMediator<TWindow, TReactive> : IMediator
         reactiveButton.OnClickButton += ProceedButtonAction;
     }
 
-    public virtual void OnShow() { }
+    public virtual void OnFocus() { }
 
-    public virtual void OnHide() { }
+    public virtual void OnUnfocused() { }
 
     public virtual void OnDestroy()
     {

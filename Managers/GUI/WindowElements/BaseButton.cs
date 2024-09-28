@@ -21,6 +21,7 @@ public class BaseButton<T> : MonoBehaviour where T : struct, Enum
     private void OnValidate() => configuration?.ValidateButton(transform);
 }
 
+//TODO: ToggleConfiguration combine
 [Serializable,]
 public class ButtonConfiguration<T> where T : struct, Enum
 {

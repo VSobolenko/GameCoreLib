@@ -8,7 +8,7 @@ namespace Game.GUI.Windows
 [Serializable]
 internal class WindowSettings
 {
-    [Header("Transition"), SerializeField] private float transitionMoveDuration = .5f;
+    [Header("Default Transition"), SerializeField] private float transitionMoveDuration = .5f;
     [SerializeField] private Ease moveType = Ease.Linear;
 
     public float TransitionMoveDuration => transitionMoveDuration;

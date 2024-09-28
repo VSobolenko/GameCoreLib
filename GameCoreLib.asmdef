@@ -9,10 +9,10 @@
         "Unity.Addressables",
         "Unity.ResourceManager",
         "DOTween.Modules",
-        "UnityEngine.Purchasing",
-        "UnityEngine.Purchasing.Stores",
         "UniTask",
-        "MaxSdk.Scripts"
+        "MaxSdk.Scripts",
+        "UnityEngine.Purchasing",
+        "UnityEngine.Purchasing.Stores"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

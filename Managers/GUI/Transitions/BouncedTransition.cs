@@ -5,13 +5,13 @@ using UnityEngine;
 
 namespace Game.GUI.Windows.Transitions
 {
-internal class VerticalTransition : IWindowTransition
+internal class BouncedTransition : IWindowTransition
 {
     private readonly WindowSettings _settings;
     private readonly int _width;
     private readonly int _height;
 
-    public VerticalTransition(WindowSettings settings)
+    public BouncedTransition(WindowSettings settings)
     {
         _settings = settings;
         _width = Screen.width;
@@ -26,11 +26,8 @@ internal class VerticalTransition : IWindowTransition
         var transform = windowProperties.rectTransform;
         canvasGroup.blocksRaycasts = false;
 
-        var activePos = transform.localPosition;
-        var startPos = new Vector3(activePos.x, activePos.y + transform.rect.height, activePos.z);
-
-        transform.localPosition = startPos;
-        MoveWindow(transform, Vector3.zero, () =>
+        transform.localScale = Vector3.zero;
+        BounceWindow(transform, Vector3.one, _settings.TransitionMoveDuration / 2f, () =>
         {
             canvasGroup.blocksRaycasts = true;
             completionSource.SetResult(true);
@@ -48,9 +45,8 @@ internal class VerticalTransition : IWindowTransition
         var activePos = transform.localPosition;
 
         canvasGroup.blocksRaycasts = false;
-        var targetPosition = new Vector3(activePos.x, activePos.y - transform.rect.height, activePos.z);
 
-        MoveWindow(transform, targetPosition, () =>
+        BounceWindow(transform, Vector3.zero, 0, () =>
         {
             canvasGroup.blocksRaycasts = true;
             completionSource.SetResult(true);
@@ -60,11 +56,13 @@ internal class VerticalTransition : IWindowTransition
         return completionSource.Task;
     }
 
-    private void MoveWindow(RectTransform transform, Vector3 to, TweenCallback completeAction)
+    private void BounceWindow(RectTransform transform, Vector3 to, float startDelay, TweenCallback completeAction)
     {
-        transform.DOLocalMove(to, _settings.TransitionMoveDuration)
-                 .SetEase(_settings.MoveType)
-                 .OnComplete(completeAction);
+        var seq = DOTween.Sequence();
+        seq.PrependInterval(startDelay)
+           .Append(transform.DOScale(to, _settings.TransitionMoveDuration / 2f)
+                            .SetEase(_settings.MoveType))
+           .OnComplete(completeAction);
     }
 }
 }

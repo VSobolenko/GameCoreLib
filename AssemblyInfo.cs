@@ -1,7 +1,8 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("GameCoreLib.Tests")]
+[assembly: InternalsVisibleTo("GameCoreLib.UnitTests")]
+[assembly: InternalsVisibleTo("GameCoreLib.IntegrationTests")]
 [assembly: InternalsVisibleTo("GameCoreLib.Editor")]
 //[assembly: AssemblyTitle("UnityEditor.TestRunner")]
 //[assembly: CLSCompliant(true)]      

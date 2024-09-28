@@ -5,13 +5,13 @@ using UnityEngine;
 
 namespace Game.GUI.Windows.Transitions
 {
-internal class VerticalTransition : IWindowTransition
+internal class HorizontalTransition : IWindowTransition
 {
     private readonly WindowSettings _settings;
     private readonly int _width;
     private readonly int _height;
 
-    public VerticalTransition(WindowSettings settings)
+    public HorizontalTransition(WindowSettings settings)
     {
         _settings = settings;
         _width = Screen.width;
@@ -27,7 +27,7 @@ internal class VerticalTransition : IWindowTransition
         canvasGroup.blocksRaycasts = false;
 
         var activePos = transform.localPosition;
-        var startPos = new Vector3(activePos.x, activePos.y + transform.rect.height, activePos.z);
+        var startPos = new Vector3(activePos.x + transform.rect.width, activePos.y, activePos.z);
 
         transform.localPosition = startPos;
         MoveWindow(transform, Vector3.zero, () =>
@@ -48,7 +48,7 @@ internal class VerticalTransition : IWindowTransition
         var activePos = transform.localPosition;
 
         canvasGroup.blocksRaycasts = false;
-        var targetPosition = new Vector3(activePos.x, activePos.y - transform.rect.height, activePos.z);
+        var targetPosition = new Vector3(activePos.x - transform.rect.width, activePos.y, activePos.z);
 
         MoveWindow(transform, targetPosition, () =>
         {

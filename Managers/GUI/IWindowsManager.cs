@@ -38,9 +38,6 @@ public interface IWindowsManager : IWindowsContainer
     /// <summary>
     /// Close all window
     /// </summary>
-    /// <param name="mediator"></param>
-    /// <typeparam name="TMediator"></typeparam>
-    /// <returns></returns>
     public void CloseWindows();
 }
 }
