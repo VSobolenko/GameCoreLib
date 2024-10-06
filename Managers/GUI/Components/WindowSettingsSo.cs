@@ -8,7 +8,7 @@ namespace Game.GUI.Windows
 [Serializable]
 internal class WindowSettings
 {
-    [Header("Default Transition"), SerializeField] private float transitionMoveDuration = .5f;
+    [SerializeField] private float transitionMoveDuration = .5f;
     [SerializeField] private Ease moveType = Ease.Linear;
 
     public float TransitionMoveDuration => transitionMoveDuration;
@@ -18,6 +18,7 @@ internal class WindowSettings
 [CreateAssetMenu(fileName = nameof(WindowSettings), menuName = GameData.EditorName +"/Window Settings", order = 3)]
 internal class WindowSettingsSo : ScriptableObject
 {
+    [Header("Default Transition")]
     public WindowSettings windowSettings;
 }
 }

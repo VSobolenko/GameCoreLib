@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using Game.Factories;
 using UnityEngine;
 using Zenject;
 
-namespace Game.Factories.Managers
+namespace GameTests
 {
-internal class DependencyInjectionFactory : IFactoryGameObjects
+public class DependencyInjectionFactory : IFactoryGameObjects
 {
     private readonly DiContainer _container;
 

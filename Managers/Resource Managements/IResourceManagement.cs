@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 namespace Game.AssetContent
 {
-public interface IAddressablesManager
+public interface IResourceManagement
 {
     T LoadAsset<T>(string key) where T : Object;
 

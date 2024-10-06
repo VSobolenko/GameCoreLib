@@ -1,20 +1,21 @@
-﻿using Game.Audio;
-using Game.Audio.Managers;
-using Zenject;
+﻿using Game.Audio.Managers;
+using Game.Factories;
 
-namespace Game.Installers.Audio
+namespace Game.Audio.Installers
 {
-public class AudioInstaller : Installer<AudioInstaller>
+public class AudioInstaller
 {
+    private static readonly AudioSettings _settings;
     private const string ResourcesSettingsPath = "Audio/AudioSettings";
-    
-    public override void InstallBindings()
+
+    static AudioInstaller()
     {
-        Container.Bind<IAudioManager>().To<UnityAudioManager>().AsSingle().NonLazy();
-        Container.Bind<AudioSettings>().FromMethod(LoadSettingsFromResources).AsSingle().NonLazy();
+        _settings = LoadSettingsFromResources();
     }
 
-    private AudioSettings LoadSettingsFromResources()
+    public static IAudioManager UnityAudio(IFactoryGameObjects factory) => new UnityAudioManager(factory, _settings);
+    
+    private static AudioSettings LoadSettingsFromResources()
     {
         var so = UnityEngine.Resources.Load<AudioSettings>(ResourcesSettingsPath);
         if (so == null)

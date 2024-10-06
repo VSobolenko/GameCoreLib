@@ -1,32 +1,32 @@
-﻿using Game.Localizations;
-using Game.Localizations.Components;
+﻿using Game.Localizations.Components;
 using Game.Localizations.Managers;
 using UnityEngine;
-using Zenject;
 
-namespace Game.Installers.Localizations
+namespace Game.Localizations.Installers
 {
-public class LocalizationInstaller : Installer<LocalizationInstaller>
+public class LocalizationInstaller
 {
     private const string ResourcesSettingsPath = "Localization/LocalizationSettings";
-    
-    public override void InstallBindings()
+
+    private static LocalizationSettings _settings;
+
+    static LocalizationInstaller()
     {
-        Container.Bind<ILocalizationManager>().To<LocalizationManager>().AsSingle().NonLazy();
-        Container.Bind<LocalizationSettings>().FromMethod(LoadSettingsFromResources).AsSingle().NonLazy();
+        _settings = LoadSettingsFromResources();
     }
 
-    private LocalizationSettings LoadSettingsFromResources()
+    public static ILocalizationManager Manager() => new LocalizationManager(_settings);
+    
+    private static LocalizationSettings LoadSettingsFromResources()
     {
         var so = Resources.Load<LocalizationSettings>(ResourcesSettingsPath);
-        if (so == null)
-        {
-            Log.Error($"Can't load localization so settings. Path to so: {ResourcesSettingsPath}");
 
-            return default;
-        }
+        if (so != null) 
+            return so;
+        Log.Error($"Can't load localization so settings. Path to so: {ResourcesSettingsPath}");
 
-        return so;
+        return default;
+
     }
 }
 }

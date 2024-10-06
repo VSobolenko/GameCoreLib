@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Game.Pools.Managers
+namespace Game.Pools
 {
 internal class ObjectPoolProfilerProvider : MonoBehaviour
 {

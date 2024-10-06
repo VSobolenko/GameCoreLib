@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Game.AssetContent.Managers
 {
-internal class AddressablesManager : System.IDisposable, IAddressablesManager
+internal class AddressablesManager : System.IDisposable, IResourceManagement
 {
     private readonly Dictionary<string, AsyncOperationHandle> _loadedHandlers;
 

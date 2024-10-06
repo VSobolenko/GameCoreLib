@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using Zenject;
 
 namespace Game.Inputs.Managers
 {
-internal class InputManager : ITickable, IInputManager
+internal class InputManager : IInputManager
 {
     public event Action<Vector2, bool> OnStartInput;
     public event Action<Vector2, bool> OnStayInput;
@@ -19,7 +18,7 @@ internal class InputManager : ITickable, IInputManager
     //                       |                   |
     //                       +--------------------->
     //                    (0, 0)          (Screen.width, 0)
-    public void Tick()
+    public void Update()
     {
         const int buttonId = 0;
         if (Input.GetMouseButtonDown(buttonId))

@@ -4,28 +4,27 @@ using System.Linq;
 using Game.AssetContent;
 using Game.Factories;
 using UnityEngine;
-using Zenject;
 
-namespace Game.GUI.Windows.Factories.Managers
+namespace Game.GUI.Windows.Factories
 {
 internal class WindowsFactory : IWindowFactory
 {
-    private readonly DiContainer _container;
-    private readonly IAddressablesManager _addressablesManager;
+    private readonly IMediatorInstantiator _container;
+    private readonly IResourceManagement _resourceManagement;
     private readonly IFactoryGameObjects _factory;
 
-    private readonly Dictionary<Type, Type> _windowMediatorMap = new(5);
+    private static readonly Dictionary<Type, Type> WindowMediatorMap = new(5);
 
-    public WindowsFactory(DiContainer container, IAddressablesManager addressablesManager, IFactoryGameObjects factory)
+    public WindowsFactory(IMediatorInstantiator container, IResourceManagement resourceManagement, IFactoryGameObjects factory)
     {
-        _addressablesManager = addressablesManager;
+        _resourceManagement = resourceManagement;
         _factory = factory;
         _container = container;
 
         MapMediatorTypes();
     }
 
-    private void MapMediatorTypes()
+    private static void MapMediatorTypes()
     {
         var mediators = AppDomain.CurrentDomain.GetAssemblies()
                                  .SelectMany(s => s.GetTypes())
@@ -44,7 +43,7 @@ internal class WindowsFactory : IWindowFactory
             }
 
             if (windowType != null)
-                _windowMediatorMap.Add(mediator, windowType);
+                WindowMediatorMap.Add(mediator, windowType);
         }
     }
 
@@ -69,7 +68,7 @@ internal class WindowsFactory : IWindowFactory
         window = null;
         var mediatorType = typeof(TMediator);
 
-        if (_windowMediatorMap.TryGetValue(mediatorType, out var windowType) == false)
+        if (WindowMediatorMap.TryGetValue(mediatorType, out var windowType) == false)
         {
             Log.Error($"For {mediatorType} Window type not found");
 
@@ -77,7 +76,7 @@ internal class WindowsFactory : IWindowFactory
         }
 
         var prefabKey = $"UI/{mediatorType.Name.Replace("MediatorUI", "")}";
-        var prefab = _addressablesManager.LoadAsset<GameObject>(prefabKey);
+        var prefab = _resourceManagement.LoadAsset<GameObject>(prefabKey);
 
         if (prefab == null)
             return false;
@@ -90,7 +89,7 @@ internal class WindowsFactory : IWindowFactory
         }
 
         window = _factory.InstantiatePrefab(prefab, root).GetComponent<WindowUI>();
-        mediator = _container.Instantiate<TMediator>(new[] {window});
+        mediator = _container.Instantiate<TMediator>(window);
 
         return mediator != null;
     }

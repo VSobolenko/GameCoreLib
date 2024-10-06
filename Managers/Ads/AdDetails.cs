@@ -1,6 +1,6 @@
 ﻿namespace Game.Ads
 {
-internal struct AdDetails
+public struct AdDetails
 {
     public string sdkKey;
     public string rewardedAdUnitId;

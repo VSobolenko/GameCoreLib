@@ -1,25 +1,30 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
-using Zenject;
 
 namespace Game.Localizations.Components
 {
 [RequireComponent(typeof(TextMeshProUGUI))]
 [DisallowMultipleComponent]
-internal class LocalizableTMP : LocalizableBehaviour
+public class LocalizableTMP : LocalizableBehaviour
 {
     [SerializeField] private string key;
     [SerializeField] private string fallback;
     [Header("Custom settings"), SerializeField] private bool disableStartedLocalization;
     [SerializeField] private TextMeshProUGUI targetText;
 
-    [Inject] private ILocalizationManager _localizationManager;
+    private ILocalizationManager _localizationManager;
 
 #if UNITY_EDITOR
     [Header("Editor features"), SerializeField] private LocalizationManagerType editorManagerType;
     [SerializeField] private LanguageType languageForTranslate;
 #endif
+
+    protected virtual void Initialize(ILocalizationManager localizationManager)
+    {
+        _localizationManager = localizationManager;
+    }
+    
     private void Start()
     {
         if (disableStartedLocalization)
@@ -43,7 +48,10 @@ internal class LocalizableTMP : LocalizableBehaviour
     {
         if (manager == null || targetText == null)
         {
-            Log.Error($"Translation is skipped for object {gameObject.name}");
+            Log.Error($"Translation is skipped for object \"{gameObject.name}\"");
+#if UNITY_EDITOR
+            UnityEditor.Selection.activeObject = gameObject;
+#endif
             return;
         }
 

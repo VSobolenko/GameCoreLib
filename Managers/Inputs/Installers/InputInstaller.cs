@@ -1,32 +1,33 @@
-﻿using Game.Inputs;
-using Game.Inputs.Managers;
+﻿using Game.Inputs.Managers;
 using UnityEngine;
-using Zenject;
 
-namespace Game.Installers.Inputs
+namespace Game.Inputs.Installers
 {
-public class InputInstaller : Installer<InputInstaller>
+public class InputInstaller
 {
     private const string ResourcesSettingsPath = "InputSettings";
-    
-    public override void InstallBindings()
-    {
-        Container.BindInterfacesTo<InputManager>().AsSingle();
-        Container.Bind<SwipeDetector>().AsSingle();
-        Container.Bind<InputSettings>().FromMethod(LoadSettingsFromResources).AsSingle().NonLazy();
-    }
 
-    private InputSettings LoadSettingsFromResources()
+    private static InputSettings _settings;
+
+    static InputInstaller()
+    {
+        _settings = LoadSettingsFromResources();
+    }
+    
+    public static IInputManager Manager() => new InputManager();
+    public static SwipeDetector Swipe(IInputManager manager) => new SwipeDetector(manager, _settings);
+    
+    private static InputSettings LoadSettingsFromResources()
     {
         var so = Resources.Load<InputSettingsSo>(ResourcesSettingsPath);
-        if (so == null)
-        {
-            Log.Error($"Can't load input so settings. Path to so: {ResourcesSettingsPath}");
 
-            return default;
-        }
+        if (so != null) 
+            return so.inputSettings;
+        
+        Log.Error($"Can't load input so settings. Path to so: {ResourcesSettingsPath}");
 
-        return so.inputSettings;
+        return default;
+
     }
 }
 }

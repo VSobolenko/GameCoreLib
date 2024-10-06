@@ -18,10 +18,10 @@ public class AddressableManagerTests
     public void LoadAsset_WhenAssetExist_ShouldReturnNotNull()
     {
         // Arrange
-        IAddressablesManager addressablesManager = new AddressablesManager();
+        IResourceManagement resourceManagement = new AddressablesManager();
         
         // Act
-        var gameObject = addressablesManager.LoadAsset<GameObject>(GameObjectAssetTestKey);
+        var gameObject = resourceManagement.LoadAsset<GameObject>(GameObjectAssetTestKey);
         
         // Assert
         Assert.IsTrue(gameObject != null);
@@ -31,10 +31,10 @@ public class AddressableManagerTests
     public void LoadAsset_WhenAssetNotExist_ShouldReturnNull()
     {
         // Arrange
-        IAddressablesManager addressablesManager = new AddressablesManager();
+        IResourceManagement resourceManagement = new AddressablesManager();
         
         // Act
-        var gameObject = addressablesManager.LoadAsset<GameObject>(NonExistentAssetKey);
+        var gameObject = resourceManagement.LoadAsset<GameObject>(NonExistentAssetKey);
         
         // Assert
         Assert.IsNull(gameObject);
@@ -44,11 +44,11 @@ public class AddressableManagerTests
     public void LoadAsset_WhenStringIsNullOrEmpty_ShouldReturnNull()
     {
         // Arrange
-        IAddressablesManager addressablesManager = new AddressablesManager();
+        IResourceManagement resourceManagement = new AddressablesManager();
         
         // Act
-        var emptyStringGameObject = addressablesManager.LoadAsset<GameObject>("");
-        var nullStringGameObject = addressablesManager.LoadAsset<GameObject>(null);
+        var emptyStringGameObject = resourceManagement.LoadAsset<GameObject>("");
+        var nullStringGameObject = resourceManagement.LoadAsset<GameObject>(null);
         
         // Assert
         Assert.IsNull(emptyStringGameObject);
@@ -59,10 +59,10 @@ public class AddressableManagerTests
     public async Task LoadAssetAsync_WhenAssetExist_ShouldReturnNotNull()
     {
         // Arrange
-        IAddressablesManager addressablesManager = new AddressablesManager();
+        IResourceManagement resourceManagement = new AddressablesManager();
         
         // Act
-        var gameObject = await addressablesManager.LoadAssetAsync<GameObject>(GameObjectAssetTestKey);
+        var gameObject = await resourceManagement.LoadAssetAsync<GameObject>(GameObjectAssetTestKey);
         
         // Assert
         Assert.IsTrue(gameObject != null);
@@ -72,10 +72,10 @@ public class AddressableManagerTests
     public async Task LoadAssetAsync_WhenAssetNonExist_ShouldReturnNull()
     {
         // Arrange
-        IAddressablesManager addressablesManager = new AddressablesManager();
+        IResourceManagement resourceManagement = new AddressablesManager();
         
         // Act
-        var gameObject = await addressablesManager.LoadAssetAsync<GameObject>(NonExistentAssetKey);
+        var gameObject = await resourceManagement.LoadAssetAsync<GameObject>(NonExistentAssetKey);
         
         // Assert
         Assert.IsTrue(gameObject == null);
@@ -85,11 +85,11 @@ public class AddressableManagerTests
     public async Task LoadAssetAsync_WhenStringIsNullOrEmpty_ShouldReturnNull()
     {
         // Arrange
-        IAddressablesManager addressablesManager = new AddressablesManager();
+        IResourceManagement resourceManagement = new AddressablesManager();
         
         // Act
-        var emptyStringGameObject = await addressablesManager.LoadAssetAsync<GameObject>("");
-        var nullStringGameObject = await addressablesManager.LoadAssetAsync<GameObject>(null);
+        var emptyStringGameObject = await resourceManagement.LoadAssetAsync<GameObject>("");
+        var nullStringGameObject = await resourceManagement.LoadAssetAsync<GameObject>(null);
         
         // Assert
         Assert.IsNull(emptyStringGameObject);
@@ -100,10 +100,10 @@ public class AddressableManagerTests
     public async Task LoadSceneAsync_WhenAssetExist_ShouldReturnHandle()
     {
         // Arrange
-        IAddressablesManager addressablesManager = new AddressablesManager();
+        IResourceManagement resourceManagement = new AddressablesManager();
         
         // Act
-        var sceneHandle = await addressablesManager.LoadSceneAsync(SceneAssetTestKey, LoadSceneMode.Additive);
+        var sceneHandle = await resourceManagement.LoadSceneAsync(SceneAssetTestKey, LoadSceneMode.Additive);
         var task = await sceneHandle.Task;
         var scene = task.Scene;
 
@@ -115,10 +115,10 @@ public class AddressableManagerTests
     public async Task LoadSceneAsync_WhenAssetNonExist_ShouldReturnDefaultHandle()
     {
         // Arrange
-        IAddressablesManager addressablesManager = new AddressablesManager();
+        IResourceManagement resourceManagement = new AddressablesManager();
         
         // Act
-        var handle = await addressablesManager.LoadSceneAsync(NonExistentAssetKey);
+        var handle = await resourceManagement.LoadSceneAsync(NonExistentAssetKey);
         
         // Assert
         Assert.IsFalse(handle.IsValid());
@@ -128,11 +128,11 @@ public class AddressableManagerTests
     public async Task LoadSceneAsync_WhenStringIsNullOrEmpty_ShouldReturnDefaultHandle()
     {
         // Arrange
-        IAddressablesManager addressablesManager = new AddressablesManager();
+        IResourceManagement resourceManagement = new AddressablesManager();
         
         // Act
-        var emptyStringGameObject = await addressablesManager.LoadSceneAsync("");
-        var nullStringGameObject = await addressablesManager.LoadSceneAsync(null);
+        var emptyStringGameObject = await resourceManagement.LoadSceneAsync("");
+        var nullStringGameObject = await resourceManagement.LoadSceneAsync(null);
         
         // Assert
         Assert.IsFalse(emptyStringGameObject.IsValid());

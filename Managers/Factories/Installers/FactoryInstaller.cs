@@ -1,15 +1,9 @@
-﻿using Game.AssetContent.Managers;
-using Game.Factories;
-using Game.Factories.Managers;
-using Zenject;
+﻿using Game.Factories.Managers;
 
-namespace Game.Installers.Factories
+namespace Game.Factories.Installers
 {
-public class FactoryInstaller : Installer<FactoryInstaller>
+public static class FactoryInstaller
 {
-    public override void InstallBindings()
-    {
-        Container.Bind<IFactoryGameObjects>().To<DependencyInjectionFactory>().AsSingle();
-    }
+    public static IFactoryGameObjects Standart() => new StandardObjectsFactory();
 }
 }

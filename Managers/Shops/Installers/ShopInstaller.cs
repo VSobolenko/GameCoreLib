@@ -1,20 +1,20 @@
-﻿using Game.Shops;
-using UnityEngine;
-using Zenject;
+﻿using UnityEngine;
 
-namespace Game.Installers.Shops
+namespace Game.Shops.Installers
 {
-public class ShopInstaller : Installer<ShopInstaller>
+public class ShopInstaller
 {
     private const string ResourcesSettingsPath = "Shop/ProductsConfig";
+    private static readonly ProductsSettingsCollections Settings;
     
-    public override void InstallBindings()
+    static ShopInstaller()
     {
-        Container.Bind<IShopManager>().To<IAPShopManager>().AsSingle().NonLazy();
-        Container.Bind<GameProduct[]>().FromMethod(LoadProductsFromResources).WhenInjectedInto<IShopManager>();
+        Settings = LoadProductsFromResources();
     }
 
-    private GameProduct[] LoadProductsFromResources()
+    public static IShopManager IAP() => new IAPShopManager(Settings.products);
+    
+    private static ProductsSettingsCollections LoadProductsFromResources()
     {
         var so = Resources.Load<ProductsSettingsCollections>(ResourcesSettingsPath);
         if (so == null)
@@ -24,7 +24,7 @@ public class ShopInstaller : Installer<ShopInstaller>
             return default;
         }
 
-        return so.products;
+        return so;
     }
 }
 }

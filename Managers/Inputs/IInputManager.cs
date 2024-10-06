@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Inputs
 {
-public interface IInputManager
+public interface IInputManager : IUpdatable
 {
     event Action<Vector2, bool> OnStartInput; 
     event Action<Vector2, bool> OnStayInput; 
